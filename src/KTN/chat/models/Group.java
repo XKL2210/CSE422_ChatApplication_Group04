@@ -5,13 +5,23 @@ import java.util.ArrayList;
 public abstract class Group {
 	private String id;
 	private String name;
-	private String founder;
+	private User founder;
 	private ArrayList<Member> members;
 
-	public Group(String id, String founder) {
+	public Group(String id, User founder, ArrayList<User> users) {
 		members = new ArrayList<>();
 		this.id = id;
 		this.founder = founder;
+		Member founderMember = new Member(founder);
+		founderMember.setRoleToAdmin();
+		
+		users.forEach(user -> {
+            Member member = new Member(user);
+            this.members.add(member);
+        });
+		
+		members.add(founderMember);
+		members = new ArrayList<>();
 	}
 
 	public void addMember(User user) {
@@ -30,7 +40,7 @@ public abstract class Group {
 		return name;
 	}
 
-	public String getFounder() {
+	public User getFounder() {
 		return founder;
 	}
 

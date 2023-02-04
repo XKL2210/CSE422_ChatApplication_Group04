@@ -6,7 +6,7 @@ public class Member {
 	
 	public Member(User userProfile) {
 		this.userProfile = userProfile;
-		this.role = "";
+		this.role = "Member";
 	}
 	
 	public User getUserProfile() {
@@ -21,7 +21,11 @@ public class Member {
 		this.userProfile = user;
 	}
 	
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoleToAdmin() {
+		this.role = "Admin";
+	}
+	
+	public void setRoleToMember() {
+		this.role = "Member";
 	}
 }
