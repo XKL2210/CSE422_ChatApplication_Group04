@@ -2,7 +2,7 @@ package ktn.chat.models;
 
 import java.util.UUID;
 
-import models.enums.FileType;
+import ktn.chat.enums.FileType;
 
 public class File {
 	private String id;
