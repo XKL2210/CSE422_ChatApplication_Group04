@@ -13,6 +13,7 @@ public abstract class Group {
 		this.id = id;
 		this.founder = founder;
 		Member founderMember = new Member(founder);
+		founderMember.setRoleToAdmin();
 		
 		users.forEach(user -> {
             Member member = new Member(user);
