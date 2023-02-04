@@ -13,6 +13,7 @@ public abstract class Group {
 		this.id = id;
 		this.founder = founder;
 		Member founderMember = new Member(founder);
+		founderMember.setRoleToAdmin();
 		
 		users.forEach(user -> {
             Member member = new Member(user);
@@ -45,25 +46,5 @@ public abstract class Group {
 
 	public ArrayList<Member> getMembers() {
 		return members;
-	}
-	
-	public void setAdminByName(User user) {
-		for(int i = 0; i < members.size(); i++) {
-			if(user.getFirstName().equals(members.get(i).getUserProfile().getFirstName())
-					&& 
-					user.getLastName().equals(members.get(i).getUserProfile().getLastName())) {
-				members.get(i).setRoleToAdmin();
-			}
-		}
-	}
-	
-	public void setMemberByName(User user) {
-		for(int i = 0; i < members.size(); i++) {
-			if(user.getFirstName().equals(members.get(i).getUserProfile().getFirstName())
-					&& 
-					user.getLastName().equals(members.get(i).getUserProfile().getLastName())) {
-				members.get(i).setRoleToMember();
-			}
-		}
 	}
 }
