@@ -1,4 +1,4 @@
-package KTN.chat.models;
+package ktn.chat.models;
 
 import java.sql.Date;
 

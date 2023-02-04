@@ -1,4 +1,4 @@
-package KTN.chat.models;
+package ktn.chat.models;
 
 public class Member {
 	private User userProfile;
