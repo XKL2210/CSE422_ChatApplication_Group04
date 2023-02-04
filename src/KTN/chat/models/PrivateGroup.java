@@ -8,5 +8,4 @@ public class PrivateGroup extends Group{
 		super(id, founder, users);
 		
 	}
-
 }

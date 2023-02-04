@@ -8,5 +8,4 @@ public class PublicGroup extends Group {
 		super(id, founder, users);
 		
 	}
-	
 }
