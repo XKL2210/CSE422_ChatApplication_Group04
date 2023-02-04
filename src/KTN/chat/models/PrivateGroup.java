@@ -8,4 +8,12 @@ public class PrivateGroup extends Group{
 		super(id, founder, users);
 		
 	}
+	
+	public void setAdminByName(User user) {
+		setAdminByName(user);
+	}
+	
+	public void setMemberByName(User user) {
+		setAdminByName(user);
+	}
 }
