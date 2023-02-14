@@ -12,7 +12,7 @@ public class User {
 	private User(String firstName, String lastName, 
 			String hashPassword, String gender, 
 			Date dateOfBirth) {
-		this.fisrtName = firstName;
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.hashPassword = hashPassword;
 		this.gender = gender;
