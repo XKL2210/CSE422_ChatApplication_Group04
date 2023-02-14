@@ -1,4 +1,10 @@
-package KTN.chat.models;
+package ktn.chat.models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ktn.chat.enums.GroupMemberRole;
+
 public abstract class Group {
     private String id;
     private String name;
