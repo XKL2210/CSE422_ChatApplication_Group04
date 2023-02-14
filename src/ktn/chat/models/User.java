@@ -1,66 +1,87 @@
 package ktn.chat.models;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.time.LocalDate;
+
+import ktn.chat.enums.Gender;
+import ktn.chat.enums.GroupMemberRole;
 
 public class User {
-	private String firstName;
-	private String lastName;
-	private String hashPassword;
-	private String gender;
-	private Date dateOfBirth;
-	
-	private User(String firstName, String lastName, 
-			String hashPassword, String gender, 
-			Date dateOfBirth) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.hashPassword = hashPassword;
-		this.gender = gender;
-	}
-	
+	private String userName;
+    private String hashPassword;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private Gender gender;
+	//Constructor
+    public User(String userName, String password, String firstName, String lastName, LocalDate dateOfBirth, Gender gender) {
+        this.userName = userName;
+        this.hashPassword = passwordEncryption(password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+    }
+    //Functional Methods
+    public boolean checkPassword(String password) {
+        String encryptedPassword = passwordEncryption(password);
+        return hashPassword.equals(encryptedPassword);
+    }
+    
+    private String passwordEncryption(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte[] digest = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //Getter
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public String getFullName() {
-		String fullName = firstName + " " + lastName;
-		return fullName;
-	}
-	
-	public String getGender() {
-		return gender;
-	}
-	
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-	
-	public boolean verifyPasword(String inputPasword) {
-		return hashPassword.equalsIgnoreCase(inputPasword);
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
+    public String getHashPassword() {
+        return hashPassword;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+    //Setter
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-    
-    public void setGender(String gender) {
-    	this.gender = gender;
+        this.lastName = lastName;
     }
-    
-    public void setDateOfBirth(Date dateOfBirth) {
-    	this.dateOfBirth = dateOfBirth;
+
+    public void setLocalDate(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
-    
-    public void setHashPassword(String hashPassword) {
-    	this.hashPassword = hashPassword;
+
+    public void getGender(Gender gender) {
+        this.gender = gender;
     }
 }
