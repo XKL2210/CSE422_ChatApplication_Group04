@@ -6,35 +6,48 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Repository<Entity> implements IRepository<Entity>{
-	List<Entity> list = new ArrayList<>();
+public class Repository<Entity> implements ResInterface<Entity>{
+	private List<Entity> entities;
 
-	@Override
-	public List<Entity> get(Predicate<Entity> predicate, Comparator<Entity> filter) {
-		List<Entity> result;
-        result = list.stream().filter(predicate).sorted(filter).collect(Collectors.toList());
-        return result;
-	}
+    public Repository() {
+        this.entities = new ArrayList<>();
+    }
 
-	@Override
-	public Entity find(Predicate<Entity> predicate) {
-		return list.stream().filter(predicate).findFirst().orElse(null);
-	}
+    public Repository(List<Entity> entities) {
+        this.entities = entities;
+    }
 
-	@Override
-	public void insert(Entity entity) {
-		list.add(entity);
-	}
+    @Override
+    public Iterable<Entity> get(Predicate<Entity> predicate, Comparator<Entity> orderBy) {
+        List<Entity> match;
 
-	@Override
-	public void update(Entity entity, Entity entity1) {
-		// TODO Auto-generated method stub
-		
-	}
+        if (predicate == null) {
+            return entities;
+        }
 
-	@Override
-	public void delete(Entity entity) {
-		list.remove(entity);
-	}
-	
+        if (orderBy != null) {
+            match = this.entities.stream().filter(predicate).sorted(orderBy).toList();
+        } else {
+            match = this.entities.stream().filter(predicate).toList();
+        }
+
+        return match;
+    }
+
+    @Override
+    public Entity find(Predicate<Entity> predicate) {
+        Entity entity = this.entities.stream().filter(predicate).findFirst().orElse(null);
+        return entity;
+    }
+
+    @Override
+    public void insert(Entity entity) {
+        this.entities.add(entity);
+    }
+
+    @Override
+    public void delete(Entity entity) {
+        this.entities.remove(entity);
+    };
+
 }
