@@ -1,86 +1,42 @@
 package ktn.chat.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import ktn.chat.enums.GroupMemberRole;
+import ktn.chat.enums.Role;
 
 public abstract class Group {
-    private String id;
-    private String name;
-    private User creator;
-    private List<Member> members;
-
-    protected Group(String id, User creator, List<User> users) {
-        this.members = new ArrayList<>();
-
-        Member admin = new Member(creator, GroupMemberRole.Admin);
-        this.members.add(admin);
-
-        users.forEach(user -> {
-            Member member = new Member(user, GroupMemberRole.Member);
-            this.members.add(member);
-        });
-    }
-    private static class Member {
-        private GroupMemberRole role;
-        private User user;
-
-        public Member(User user, GroupMemberRole role) {
-            this.user = user;
-            this.role = role;
-        }
-
-        public Member(User user) {
-            this.role = GroupMemberRole.Member;
-            this.user = user;
-        }
-
-        public User getUser() {
-            return user;
-        }
-
-        public GroupMemberRole getRole() {
-            return role;
-        }
-
-        public void setRole(GroupMemberRole role) {
-            this.role = role;
-        }
-
+	private String id;
+	private String name;
+	private User founder;
+	private List<User> members;
+	private Map<String, Role> roles;
+	
+	protected Group(String id, String name, User founder) {
+		this.id = id;
+		this.name = name;
+		this.founder = founder;
+		members = new ArrayList<>();
+		roles = new HashMap<String, Role>();
+		roles.put(founder.getUsername(), Role.Member);
+	}
+	//Functional Methods
+	public void addMember(User user, Role role) {
+        members.add(user);
+        roles.put(user.getUsername(), role);
     }
 
-    private Member getMember(User user) {
-        Member member = members.stream().filter(anyMember -> anyMember.getUser().equals(user)).findFirst().orElse(null);
-        return member;
+    public Role getRole(User user) {
+        return roles.get(user.getUsername());
     }
 
-    public boolean hasMember(User user) {
-        Member member = this.getMember(user);
-        return member != null;
+    public boolean isMember(User user) {
+        return members.contains(user);
     }
-
-    public void addMember(User user) {
-        Member member = new Member(user);
-        members.add(member);
-    }
-
-    public void removeMember(User user) {
-        Member member = this.getMember(user);
-        members.remove(member);
-    }
-
-    public void setRole(User user, GroupMemberRole role) {
-        Member member = this.getMember(user);
-        member.setRole(role);
-    }
-
-    public GroupMemberRole getRole(User user) {
-        Member member = this.getMember(user);
-        return member.getRole();
-    }
-
-    public String getId() {
+	//Getter
+	public String getId() {
         return id;
     }
 
@@ -88,27 +44,19 @@ public abstract class Group {
         return name;
     }
 
-    public User getCreator() {
-        return creator;
+    public User getFounder() {
+        return founder;
     }
-
-    public List<User> getMembers() {
-        return members
-                .stream()
-                .map(Member::getUser)
-                .toList();
+    //Setter
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public int getGroupSize() {
-        return this.members.size();
+    
+    public void setMemberRole(User user) {
+    	roles.put(user.getUsername(), Role.Member);
     }
-
-    public List<User> getAdmins() {
-        return members
-                .stream()
-                .filter(member -> member.getRole() == GroupMemberRole.Admin)
-                .map(Member::getUser)
-                .toList();
+    
+    public void setAdminRole(User user) {
+    	roles.put(user.getUsername(), Role.Admin);
     }
-
 }

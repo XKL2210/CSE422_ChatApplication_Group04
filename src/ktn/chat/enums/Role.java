@@ -1,5 +1,5 @@
 package ktn.chat.enums;
 
-public enum GroupMemberRole {
+public enum Role {
 	Admin, Member;
 }

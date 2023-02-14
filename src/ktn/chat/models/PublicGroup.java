@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class PublicGroup extends Group {
 
-	public PublicGroup(String id, User founder, ArrayList<User> users) {
-		super(id, founder, users);
-		
+	protected PublicGroup(String id, String name, User founder) {
+		super(id, name, founder);
+		// TODO Auto-generated constructor stub
 	}
 }

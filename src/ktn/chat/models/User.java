@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import ktn.chat.enums.Gender;
-import ktn.chat.enums.GroupMemberRole;
+import ktn.chat.enums.Role;
 
 public class User {
 	private String userName;
@@ -45,7 +45,7 @@ public class User {
         }
     }
     //Getter
-    public String getUserName() {
+    public String getUsername() {
         return userName;
     }
 
