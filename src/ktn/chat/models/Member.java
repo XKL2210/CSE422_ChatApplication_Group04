@@ -1,20 +1,18 @@
 package ktn.chat.models;
 
+import ktn.chat.enums.GroupMemberRole;
+
 public class Member {
 	private User userProfile;
-	private String role;
+	private GroupMemberRole role;
 	
-	public Member(User userProfile) {
+	public Member(User userProfile, GroupMemberRole role) {
 		this.userProfile = userProfile;
-		this.role = "Member";
+		this.role = role;
 	}
 	
 	public User getUserProfile() {
 		return userProfile;
-	}
-	
-	public String getRole() {
-		return role;
 	}
 	
 	public void setUserProfile(User user) {
@@ -22,10 +20,10 @@ public class Member {
 	}
 	
 	public void setRoleToAdmin() {
-		this.role = "Admin";
+		this.role = GroupMemberRole.Admin;
 	}
 	
 	public void setRoleToMember() {
-		this.role = "Member";
+		this.role = GroupMemberRole.Member;
 	}
 }
