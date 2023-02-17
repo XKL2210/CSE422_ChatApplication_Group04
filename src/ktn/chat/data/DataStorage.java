@@ -10,7 +10,7 @@ import ktn.chat.repositories.Repository;
 public class DataStorage {
 	private static DataStorage storage;
 
-    private Repository<User> userRepository;
+    public Repository<User> userRepository;
     private Repository<Group> groupRepository;
     private Repository<File> fileRepository;
 
