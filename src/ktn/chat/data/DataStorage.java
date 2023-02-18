@@ -1,9 +1,8 @@
 package ktn.chat.data;
 
-import java.io.File;
-
 import javax.swing.GroupLayout.Group;
 
+import ktn.chat.models.File;
 import ktn.chat.models.User;
 import ktn.chat.repositories.Repository;
 

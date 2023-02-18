@@ -31,7 +31,7 @@ public class FileServices {
 		return false;
 	}
 
-	public ktn.chat.models.File createFile(String fileName, FileType fileType) {
+	public ktn.chat.models.File createFile(String fileName, FileType fileType) throws IOException {
 		ktn.chat.models.File file = new ktn.chat.models.File(fileName, fileType);
 		
 		dataStorage.getFileRepository().insert(file);		
