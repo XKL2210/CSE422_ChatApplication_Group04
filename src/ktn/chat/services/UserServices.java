@@ -23,7 +23,7 @@ public class UserServices {
 		User registerUser = getUser(userName);
 		if (registerUser == null) {
 			User newUser = new User(userName, password, firstName, lastName, dateOfBirth, gender);
-			dataStorage.userRepository.insert(newUser);
+			dataStorage.getUserRepository().insert(newUser);
 			return true;
 		} else {
 			System.out.println("Username is already exists");
@@ -45,7 +45,7 @@ public class UserServices {
 
 	public boolean removeUser(String username) {
 		if (currentUser != null) {
-			dataStorage.userRepository.delete(currentUser);
+			dataStorage.getUserRepository().delete(currentUser);
 			return true;
 		}
 		return false;
