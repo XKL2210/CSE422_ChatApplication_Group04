@@ -29,12 +29,19 @@ public class PrivateGroup extends Group {
         this.accessPasscode = accessPasscode;
     }
     
-    public void setAdmin(User admin) {
-        this.admin = admin;
+    public void setAdmin(User user) {
+        this.admin = user;
         setAdminRole(admin);
     }
 
     public boolean isAdmin(User user) {
         return getRole(user) == Role.Admin;
+    }
+    
+    public void removeMember(User admin, User user) {
+    	if(isAdmin(user)) {
+    		removeRole(user);
+    		removeUser(user);
+    	}
     }
 }

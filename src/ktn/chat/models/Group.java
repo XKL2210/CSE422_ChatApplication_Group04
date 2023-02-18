@@ -35,6 +35,14 @@ public abstract class Group {
     public boolean isMember(User user) {
         return members.contains(user);
     }
+    
+    public void removeRole(User user) {
+    	roles.remove(user.getUsername());
+    }
+    
+    public void removeUser(User user) {
+    	members.removeIf(n -> n.getUsername() == user.getUsername());
+    }
 	//Getter
 	public String getId() {
         return id;
