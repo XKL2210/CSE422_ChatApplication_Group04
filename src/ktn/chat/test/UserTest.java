@@ -40,7 +40,7 @@ class UserTest {
 	@Test
 	@DisplayName("Test 02: FirstNameCheck")
 	void test02() {
-		assertEquals(true, user.checkFirstName("Sahn"));
+		assertEquals("Sahn", user.getFirstName());
 		System.out.println("...Test 02: Executed...");
 	}
 }
