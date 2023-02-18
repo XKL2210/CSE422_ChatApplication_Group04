@@ -30,6 +30,11 @@ public class User {
         return hashPassword.equals(encryptedPassword);
     }
     
+    public boolean checkFirstName(String firstName1) {
+        String firstName = firstName1;	
+        return firstName.equals(firstName1);
+    }
+    
     private String passwordEncryption(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

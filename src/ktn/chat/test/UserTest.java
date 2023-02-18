@@ -37,4 +37,10 @@ class UserTest {
 		assertEquals(true, user.checkPassword("1234"));
 		System.out.println("...Test 01: Executed...");
 	}
+	@Test
+	@DisplayName("Test 02: FirstNameCheck")
+	void test02() {
+		assertEquals(true, user.checkFirstName("Sahn"));
+		System.out.println("...Test 02: Executed...");
+	}
 }
