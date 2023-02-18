@@ -2,14 +2,14 @@ package ktn.chat.models;
 
 import java.time.LocalDateTime;
 
-public class message {
+public class Message {
 	private User sender;
 	private User receiver;
 	private String messageContext;
 	private File file;
 	private LocalDateTime time;
 	
-	public message (User sender, User receiver, String messageContext, File file) {
+	public Message (User sender, User receiver, String messageContext, File file) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.messageContext = messageContext;
