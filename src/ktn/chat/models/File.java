@@ -8,15 +8,11 @@ public class File {
 	private String id;
 	private String fileName;
 	private FileType fileType;
-	private String sender;
-	private String receiver;
 	private String extension;
 
-	public File(String filename, FileType fileType, String sender, String receiver) {
+	public File(String filename, FileType fileType) {
 		this.fileName = filename;
 		this.fileType = fileType;
-		this.sender = sender;
-		this.receiver = receiver;
 		setId();
 	}
 
@@ -42,22 +38,6 @@ public class File {
 
 	public void setFileType(FileType fileType) {
 		this.fileType = fileType;
-	}
-
-	public String getSender() {
-		return sender;
-	}
-
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
-
-	public String getReceiver() {
-		return receiver;
-	}
-
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
 	}
 
 	public String getExtension() {
