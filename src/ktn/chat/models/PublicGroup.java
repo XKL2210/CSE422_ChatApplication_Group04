@@ -1,20 +1,20 @@
 package ktn.chat.models;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PublicGroup extends Group {
-	private String accessPasscode;
+	String accessPasscode;
 
-	protected PublicGroup(String id, String name, User founder, String accessPasscode) {
-		super(id, name, founder);
+	public PublicGroup(String id, String name, User founder, List<User> members, String accessPasscode) {
+		super(id, name, founder, members);
 		this.accessPasscode = accessPasscode;
 	}
-	
-	public String getAccessPasscode() {
-        return accessPasscode;
-    }
 
-    public void setAccessPasscode(String accessPasscode) {
-        this.accessPasscode = accessPasscode;
-    }
+	public String getPasscode() {
+		return accessPasscode;
+	}
+	
+	public void setPasscode(String accessPasscode) {
+		this.accessPasscode = accessPasscode;
+	}
 }

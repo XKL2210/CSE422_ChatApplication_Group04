@@ -1,8 +1,17 @@
 package ktn.chat.models;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+
+import ktn.chat.enums.RelatedTarget;
 
 public class Message {
+	public static Comparator messageByRecentnessComparator;
+
+    static {
+        messageByRecentnessComparator = (o1, o2) -> -((Message) o1).getTime().compareTo(((Message) o2).getTime());
+    }
+    
 	private User sender;
 	private User receiver;
 	private String messageContext;
@@ -17,6 +26,29 @@ public class Message {
 		this.time = LocalDateTime.now();
 	}
 	//Getter
+	public RelatedTarget getRelation(Object unidentifiedEntity) {
+        boolean isSender = unidentifiedEntity.equals(sender);
+        boolean isReceiver = unidentifiedEntity.equals(receiver);
+
+        if (!isSender && !isReceiver) {
+            return RelatedTarget.Unrelated;
+        }
+
+        if (isSender) {
+            return RelatedTarget.Sender;
+        }
+
+        return RelatedTarget.Receiver;
+    }
+    
+    public boolean isRelatedTo(Object unidentifiedEntity) {
+        if (this.getRelation(unidentifiedEntity) == RelatedTarget.Unrelated) {
+            return false;
+        }
+
+        return true;
+    }
+    
 	public User getSender() {
         return sender;
     }

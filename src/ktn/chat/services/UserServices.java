@@ -34,7 +34,7 @@ public class UserServices {
 	private boolean SignIn(String username, String pwd) {
 		currentUser = getUser(username);
 
-		if (currentUser != null && currentUser.getHashPassword().equals(pwd)) {
+		if (currentUser != null && currentUser.checkPassword(pwd)) {
 			System.out.println("Signed in successfully");
 			return true;
 		} else {

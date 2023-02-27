@@ -1,17 +1,16 @@
 package ktn.chat.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ktn.chat.enums.Role;
 
 public class PrivateGroup extends Group {
 	private User admin;
-    private String accessPasscode;
     
-	public PrivateGroup(String id, String name, User founder, String accessPasscode) {
-        super(id, name, founder);
+	public PrivateGroup(String id, String name, User founder, List<User> members) {
+        super(id, name, founder, members);
         this.admin = founder;
-        this.accessPasscode = accessPasscode;
 
         // Set founder as admin
         setAdminRole(founder);
@@ -19,14 +18,6 @@ public class PrivateGroup extends Group {
 
 	public User getAdmin() {
         return admin;
-    }
-
-    public String getAccessPasscode() {
-        return accessPasscode;
-    }
-
-    public void setAccessPasscode(String accessPasscode) {
-        this.accessPasscode = accessPasscode;
     }
     
     public void setAdmin(User user) {

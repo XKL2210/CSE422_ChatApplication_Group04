@@ -1,8 +1,8 @@
 package ktn.chat.data;
 
-import javax.swing.GroupLayout.Group;
-
 import ktn.chat.models.File;
+import ktn.chat.models.Group;
+import ktn.chat.models.Message;
 import ktn.chat.models.User;
 import ktn.chat.repositories.Repository;
 
@@ -12,11 +12,13 @@ public class DataStorage {
     private Repository<User> userRepository;
     private Repository<Group> groupRepository;
     private Repository<File> fileRepository;
+    private Repository<Message> messageRepository;
 
     public DataStorage() {
         userRepository = new Repository<>();
         groupRepository = new Repository<>();
         fileRepository = new Repository<>();
+        messageRepository = new Repository<>();
     }
     
     public static DataStorage getDataStorage() {
@@ -45,6 +47,10 @@ public class DataStorage {
     public Repository<User> getUserRepository() {
         return userRepository;
     }
+    
+    public Repository<Message> getMessageRepository() {
+    	return messageRepository;
+    }
 
     public void setUserRepository(Repository<User> userRepository) {
         this.userRepository = userRepository;
@@ -56,5 +62,9 @@ public class DataStorage {
 
     public void setFileRepository(Repository<File> fileRepository) {
         this.fileRepository = fileRepository;
+    }
+    
+    public void setMessageRepository(Repository<Message> messageRepository) {
+        this.messageRepository = messageRepository;
     }
 }
