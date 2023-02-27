@@ -6,12 +6,6 @@ import java.util.Comparator;
 import ktn.chat.enums.RelatedTarget;
 
 public class Message {
-	public static Comparator messageByRecentnessComparator;
-
-    static {
-        messageByRecentnessComparator = (o1, o2) -> -((Message) o1).getTime().compareTo(((Message) o2).getTime());
-    }
-    
 	private User sender;
 	private User receiver;
 	private String messageContext;
