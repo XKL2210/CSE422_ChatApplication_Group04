@@ -68,14 +68,9 @@ public class GroupServices {
         return false;
     }
 
+    //Function Offline
     public List <File> getAllFiles(Group group) {
-        Iterable<Message> messagesContainingFiles = dataStorage
-                .getMessageRepository()
-                .get(message -> message.getFile() != null && message.isRelatedTo(group)
-                , Message.messageByRecentnessComparator);
-
         List<File> files = new ArrayList<>();
-        messagesContainingFiles.forEach(message -> message.getFile().forEach(file -> files.add(file)));
 
         return files;
     }
