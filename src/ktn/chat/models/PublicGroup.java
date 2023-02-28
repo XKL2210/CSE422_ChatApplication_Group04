@@ -9,11 +9,11 @@ public class PublicGroup extends Group {
 		super(id, name, founder, members);
 		this.accessPasscode = accessPasscode;
 	}
-
+	//Getter
 	public String getPasscode() {
 		return accessPasscode;
 	}
-	
+	//Setter
 	public void setPasscode(String accessPasscode) {
 		this.accessPasscode = accessPasscode;
 	}

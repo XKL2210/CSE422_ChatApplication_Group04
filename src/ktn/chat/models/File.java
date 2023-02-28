@@ -15,7 +15,7 @@ public class File {
 		this.fileType = fileType;
 		setId();
 	}
-
+	//Getter
 	public String getId() {
 		return id;
 	}
@@ -27,7 +27,7 @@ public class File {
 	public String getFilename() {
 		return fileName;
 	}
-
+	//Setter
 	public void setFilename(String filename) {
 		this.fileName = filename;
 	}

@@ -1,7 +1,9 @@
 package ktn.chat.models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import ktn.chat.enums.RelatedTarget;
 
@@ -9,17 +11,17 @@ public class Message {
 	private User sender;
 	private User receiver;
 	private String messageContext;
-	private File file;
+	private List<File> files;
 	private LocalDateTime time;
 	
 	public Message (User sender, User receiver, String messageContext, File file) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.messageContext = messageContext;
-		this.file = file;
+		this.files = new ArrayList<>();
 		this.time = LocalDateTime.now();
 	}
-	//Getter
+	//Functional Methods
 	public RelatedTarget getRelation(Object unidentifiedEntity) {
         boolean isSender = unidentifiedEntity.equals(sender);
         boolean isReceiver = unidentifiedEntity.equals(receiver);
@@ -42,7 +44,14 @@ public class Message {
 
         return true;
     }
-    
+    //Temporary adding method modify later
+    public void addFile(File file) {
+    	if(!files.contains(file)) {
+    		files.add(file);
+    	}
+    	
+    }
+    //Getter
 	public User getSender() {
         return sender;
     }
@@ -51,8 +60,8 @@ public class Message {
 		return receiver;
 	}
 	
-	public File getFile() {
-		return file;
+	public ArrayList getFiles() {
+		return files;
 	}
 	
 	public String getMessage() {
@@ -69,10 +78,6 @@ public class Message {
 	
 	public void setReceiver(User receiver) {
 		this.receiver = receiver;
-	}
-	
-	public void getFile(File file) {
-		this.file = file;
 	}
 	
 	public void getMessage(String message) {

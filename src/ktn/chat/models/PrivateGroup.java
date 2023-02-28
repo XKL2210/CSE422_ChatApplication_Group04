@@ -15,11 +15,11 @@ public class PrivateGroup extends Group {
         // Set founder as admin
         setAdminRole(founder);
     }
-
+	//Getter
 	public User getAdmin() {
         return admin;
     }
-    
+    //Setter
     public void setAdmin(User user) {
         this.admin = user;
         setAdminRole(admin);
