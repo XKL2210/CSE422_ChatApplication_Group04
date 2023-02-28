@@ -60,7 +60,7 @@ public class Message {
 		return receiver;
 	}
 	
-	public ArrayList getFiles() {
+	public List getFiles() {
 		return files;
 	}
 	
