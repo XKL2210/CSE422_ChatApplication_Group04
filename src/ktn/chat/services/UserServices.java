@@ -18,7 +18,7 @@ public class UserServices {
 		return dataStorage.getUserRepository().find(u -> u.getUsername().equals(username));
 	}
 
-	private boolean SignUp(String userName, String password, String firstName, String lastName, LocalDate dateOfBirth,
+	public boolean SignUp(String userName, String password, String firstName, String lastName, LocalDate dateOfBirth,
 			Gender gender) {
 		User registerUser = getUser(userName);
 		if (registerUser == null) {
@@ -31,7 +31,7 @@ public class UserServices {
 		}
 	}
 
-	private boolean SignIn(String username, String pwd) {
+	public boolean SignIn(String username, String pwd) {
 		currentUser = getUser(username);
 
 		if (currentUser != null && currentUser.checkPassword(pwd)) {

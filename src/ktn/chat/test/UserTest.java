@@ -17,18 +17,18 @@ class UserTest {
 	User user;
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void testOnline() throws Exception {
 		System.out.println("UserServicesTest Online");
 		System.out.println("UserTest Inititated...");
 	}
 
 	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	static void testOffline() throws Exception {
 		System.out.println("...UserTest Offline");
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void objectInitialization() throws Exception {
 		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.Male);
 	}
 
