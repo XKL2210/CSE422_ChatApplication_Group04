@@ -31,8 +31,22 @@ public class FileServices {
 		return false;
 	}
 
-	public ktn.chat.models.File createFile(String fileName, FileType fileType) throws IOException {
-		ktn.chat.models.File file = new ktn.chat.models.File(fileName, fileType);
+	public ktn.chat.models.File getFileWithId(String id) {
+		ktn.chat.models.File match = dataStorage.getFileRepository().find(file -> file.getId().equals(id));
+
+        return match;
+    }
+	
+	public ktn.chat.models.File createFile(String id, String fileName, FileType fileType) throws IOException {
+		ktn.chat.models.File file = new ktn.chat.models.File(id, fileName, fileType);
+		
+		dataStorage.getFileRepository().insert(file);		
+		createSaveFile(file);
+		
+		return file;
+	}
+	
+	public ktn.chat.models.File createFile(ktn.chat.models.File file) throws IOException {
 		
 		dataStorage.getFileRepository().insert(file);		
 		createSaveFile(file);
@@ -79,11 +93,10 @@ public class FileServices {
 		boolean fileRemove = removeSavedFile(file.getFilename());
 
 		if (file != null && fileRemove) {
-			dataStorage.getFileRepository().delete(file);;
+			dataStorage.getFileRepository().delete(file);
 			return true;
 		}
 		
 		return false;
 	}
-
 }

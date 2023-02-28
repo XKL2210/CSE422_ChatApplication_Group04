@@ -10,10 +10,16 @@ public class File {
 	private FileType fileType;
 	private String extension;
 
-	public File(String filename, FileType fileType) {
+	public File(String id, String filename, FileType fileType) {
+		this.id = id;
 		this.fileName = filename;
 		this.fileType = fileType;
+		extension = filename.substring(filename.lastIndexOf(".") + 1);
 		setId();
+	}
+	//Functional methods
+	public void generateID() {
+		this.id = UUID.randomUUID().toString();
 	}
 	//Getter
 	public String getId() {
