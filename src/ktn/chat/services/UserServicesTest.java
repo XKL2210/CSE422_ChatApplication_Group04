@@ -54,4 +54,12 @@ class UserServicesTest {
 		boolean successToken = userServices.removeUser("SahnUzal2210");
 		assertEquals(successToken, true);
 	}
+	
+	@Test
+	@DisplayName("Test 04: User exist")
+	void test04() {
+		userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
+		boolean successToken = userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
+		assertEquals(successToken, false);
+	}
 }
