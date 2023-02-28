@@ -1,4 +1,4 @@
-package ktn.chat.services;
+package ktn.chat.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ktn.chat.enums.Gender;
+import ktn.chat.services.UserServices;
 
 class UserServicesTest {
 	UserServices userServices = new UserServices();
