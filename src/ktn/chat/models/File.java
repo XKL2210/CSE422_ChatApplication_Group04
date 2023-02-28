@@ -15,11 +15,6 @@ public class File {
 		this.fileName = filename;
 		this.fileType = fileType;
 		extension = filename.substring(filename.lastIndexOf(".") + 1);
-		setId();
-	}
-	//Functional methods
-	public void generateID() {
-		this.id = UUID.randomUUID().toString();
 	}
 	//Getter
 	public String getId() {
