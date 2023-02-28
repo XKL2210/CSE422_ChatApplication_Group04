@@ -25,13 +25,13 @@ class FileServicesTest {
 	
 	@BeforeAll
 	static void testOnline() throws Exception {
-		System.out.println("UserServicesTest Online");
-		System.out.println("UserServicesTest Inititated...");
+		System.out.println("FileServicesTest Online");
+		System.out.println("FileServicesTest Inititated...");
 	}
 
 	@AfterAll
 	static void testOffline() throws Exception {
-		System.out.println("...UserServicesTest Offline");
+		System.out.println("...FileServicesTest Offline");
 	}
 
 	@BeforeEach
@@ -39,13 +39,17 @@ class FileServicesTest {
 		file01 = new File("001","Chippin In.mp3", FileType.Audio);
         file02 = new File("002","Archangel.mp3", FileType.Audio);
         file03 = new File("003","Never Fade Away.mp3", FileType.Audio);
-        file04 = new File("004","Rebel Path.mp3", FileType.Audio);
+        file04 = new File("004","The Rebel Path.mp3", FileType.Audio);
 		fileServices = new FileServices();
 	}
 
 	@Test
 	@DisplayName("Test 01: File extension test")
 	void test01() throws IOException {
+		fileServices.createFile(file01);
+		fileServices.createFile(file02);
+		fileServices.createFile(file03);
+		fileServices.createFile(file04);
 		assertEquals("mp3", file01.getExtension());
 		assertEquals("mp3", file02.getExtension());
 	}
@@ -53,22 +57,19 @@ class FileServicesTest {
 	@Test
 	@DisplayName("Test 02: Get file by id")
 	void test02() throws IOException {
-		fileServices.createFile(file03);
 		assertEquals(file03, fileServices.getFileWithId("003"));
 	}
 	
 	@Test
 	@DisplayName("Test 03: Unidentified id")
 	void test03() throws IOException {
-		fileServices.createFile(file04);
+		
 		assertNull(fileServices.getFileWithId("005"));
 	}
 	
 	@Test
 	@DisplayName("Test 04: Get file by type")
 	void test04() throws IOException {
-		fileServices.createFile(file01);
-		fileServices.createFile(file02);
         List<File> myPlaylist = (List<File>) fileServices.getFilesWithType(FileType.Audio);
         assertEquals(4, myPlaylist.size());
 	}
