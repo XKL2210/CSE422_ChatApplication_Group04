@@ -10,6 +10,7 @@ import ktn.chat.enums.RelatedTarget;
 public class Message {
 	private User sender;
 	private User receiver;
+	private Group receivedGroup;
 	private String messageContext;
 	private List<File> files;
 	private LocalDateTime time;
