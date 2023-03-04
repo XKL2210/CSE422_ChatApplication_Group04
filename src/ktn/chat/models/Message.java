@@ -72,6 +72,11 @@ public class Message {
 	public LocalDateTime getTime() {
 		return time;
 	}
+	
+	public int getMessageContextCount() {
+		return messageContext.split(" ").length;
+	}
+	
 	//Setter
 	public void setSender(User sender) {
         this.sender = sender;
