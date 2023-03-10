@@ -71,7 +71,7 @@ public class GroupServices {
     //Function Offline
     public List <File> getAllFiles(Group group) {
         List<File> files = new ArrayList<>();
-
+        files = (List<File>) dataStorage.getFileRepository();
         return files;
     }
 }

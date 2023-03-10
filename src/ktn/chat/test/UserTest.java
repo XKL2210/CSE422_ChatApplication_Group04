@@ -44,4 +44,10 @@ class UserTest {
 		assertEquals("Sahn", user.getFirstName());
 		System.out.println("Test 02: Executed");
 	}
+	@Test
+	@DisplayName("Test 03: GenderCheck")
+	void test03() {
+		assertEquals(Gender.valueOf("Male"), user.getGender());
+		System.out.println("Test 02: Executed");
+	}
 }

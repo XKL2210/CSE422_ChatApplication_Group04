@@ -15,9 +15,10 @@ public class Message {
 	private List<File> files;
 	private LocalDateTime time;
 	
-	public Message (User sender, User receiver, String messageContext, File file) {
+	public Message (User sender, User receiver, String messageContext, File file, Group receivedGroup) {
 		this.sender = sender;
 		this.receiver = receiver;
+		this.receivedGroup = receivedGroup;
 		this.messageContext = messageContext;
 		this.files = new ArrayList<>();
 		this.time = LocalDateTime.now();
@@ -72,6 +73,11 @@ public class Message {
 	public LocalDateTime getTime() {
 		return time;
 	}
+	
+	public int getMessageContextCount() {
+		return messageContext.split(" ").length;
+	}
+	
 	//Setter
 	public void setSender(User sender) {
         this.sender = sender;
@@ -81,7 +87,8 @@ public class Message {
 		this.receiver = receiver;
 	}
 	
-	public void getMessage(String message) {
+	public void setMessage(String message) {
 		this.messageContext = message;
 	}
+	
 }
