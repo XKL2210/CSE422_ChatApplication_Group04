@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import ktn.chat.data.DataStorage;
 import ktn.chat.enums.Gender;
+import ktn.chat.models.Alias;
 import ktn.chat.models.User;
 
 public class UserServices {
@@ -39,6 +40,19 @@ public class UserServices {
 			return true;
 		} else {
 			System.out.println("The Username or Password is incorrect");
+			return false;
+		}
+	}
+	
+	public boolean setAlias(String currentUsername, String targetUsername, String aliasName) {
+		currentUser = getUser(currentUsername);
+		User targetUser = getUser(targetUsername);
+		
+		if(currentUsername != null && targetUser != null) {
+			Alias alias = new Alias(currentUser, targetUser, aliasName);
+			currentUser.getAliasList().put(targetUser, alias);
+			return true;
+		} else {
 			return false;
 		}
 	}
