@@ -56,6 +56,18 @@ public class UserServices {
 			return false;
 		}
 	}
+	
+	public Alias getAlias(String currentUsername, String targetUsername) {
+		currentUser = getUser(currentUsername);
+		User targetUser = getUser(targetUsername);
+		
+		if(currentUsername != null && targetUser != null) {
+			currentUser.getAliasList().get(targetUser);
+			return currentUser.getAliasList().get(targetUser);
+		}
+		
+		return null;
+	}
 
 	public boolean removeUser(String username) {
 		if (currentUser != null) {
