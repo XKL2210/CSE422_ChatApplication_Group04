@@ -10,7 +10,7 @@ import ktn.chat.enums.RelatedTarget;
 public class Message {
 	private User sender;
 	private User receiver;
-	private Group receivedGroup;
+	private Group relatedGroup;
 	private String messageContext;
 	private List<File> files;
 	private LocalDateTime time;
@@ -18,7 +18,7 @@ public class Message {
 	public Message (User sender, User receiver, String messageContext, File file, Group receivedGroup) {
 		this.sender = sender;
 		this.receiver = receiver;
-		this.receivedGroup = receivedGroup;
+		this.relatedGroup = receivedGroup;
 		this.messageContext = messageContext;
 		this.files = new ArrayList<>();
 		this.time = LocalDateTime.now();
@@ -63,7 +63,7 @@ public class Message {
 	}
 	
 	public Group getGroup() {
-		return receivedGroup;
+		return relatedGroup;
 	}
 	
 	public List getFiles() {

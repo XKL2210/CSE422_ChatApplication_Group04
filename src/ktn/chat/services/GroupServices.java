@@ -81,4 +81,15 @@ public class GroupServices {
         }
         return files;
     }
+    
+    public List<Group> GetGroupsOfUser(User user, Role role) {
+    	List<Group> relatedGroups = new ArrayList<>();
+    	for(Group group : (List<Group>) dataStorage.getGroupRepository()) {
+    		if(group.getRole(user) == role) {
+    			relatedGroups.add(group);
+    		}
+    	}
+    	return relatedGroups;
+    }
+
 }
