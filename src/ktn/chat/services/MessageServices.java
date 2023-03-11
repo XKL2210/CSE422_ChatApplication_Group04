@@ -1,7 +1,11 @@
 package ktn.chat.services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.sound.midi.Receiver;
 
 import ktn.chat.data.DataStorage;
 import ktn.chat.enums.RelatedTarget;
@@ -16,6 +20,13 @@ public class MessageServices {
 
     public MessageServices() {
         dataStorage = DataStorage.getDataStorage();
+    }
+    
+    public List<Message> getLatestMessages(List<Message> messages, int numMessages) {
+        return messages.stream()
+            .sorted(Comparator.comparing(Message::getTime).reversed())
+            .limit(numMessages)
+            .collect(Collectors.toList());
     }
     
     public void deleteMessage(Message message) {
@@ -33,6 +44,21 @@ public class MessageServices {
             }
         }
         return files;
+    }
+    
+    public List<Message> deleteMessagesUser(User user, int numbers) {
+    	List<Message> messages = new ArrayList<>();
+        List<Message> relatedMessages = new ArrayList<>();
+        List<Message> resultMessage = new ArrayList<>();
+        messages = (List<Message>) dataStorage.getMessageRepository();
+        
+        for (Message message : messages) {
+            if (message.getRelation(user).equals(user)) {
+            	relatedMessages.add(message);
+            }
+        }
+        resultMessage = getLatestMessages(messages, numbers);
+        return resultMessage;
     }
     
     public List<Message> getMessagesUser(User user, RelatedTarget target) {
