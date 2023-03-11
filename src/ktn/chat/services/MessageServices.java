@@ -18,6 +18,10 @@ public class MessageServices {
         dataStorage = DataStorage.getDataStorage();
     }
     
+    public void deleteMessage(Message message) {
+    	dataStorage.getMessageRepository().delete(message);
+    }
+    
     public List <File> getAllFiles(Group group) {
         List<Message> messages = new ArrayList<>();
         List<File> files = new ArrayList<>();
