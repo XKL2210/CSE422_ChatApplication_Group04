@@ -62,6 +62,10 @@ public class Message {
 		return receiver;
 	}
 	
+	public Group getGroup() {
+		return receivedGroup;
+	}
+	
 	public List getFiles() {
 		return files;
 	}

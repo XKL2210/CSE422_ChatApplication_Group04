@@ -1,6 +1,7 @@
 package ktn.chat.services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -68,10 +69,16 @@ public class GroupServices {
         return false;
     }
 
-    //Function Offline
     public List <File> getAllFiles(Group group) {
+        List<Message> messages = new ArrayList<>();
         List<File> files = new ArrayList<>();
-        files = (List<File>) dataStorage.getFileRepository();
+        messages = (List<Message>) dataStorage.getMessageRepository();
+        
+        for (Message message : messages) {
+            if (message.getGroup().getId() == group.getId()) {
+                files.addAll(message.getFiles());
+            }
+        }
         return files;
     }
 }
