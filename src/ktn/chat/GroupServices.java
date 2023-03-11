@@ -64,7 +64,6 @@ public class GroupServices {
             }
 
             group.removeUser(member);
-            group.removeRole(member);
             return true;
         }
 
@@ -119,4 +118,5 @@ public class GroupServices {
     	}
     	return relatedGroups;
     }
+
 }
