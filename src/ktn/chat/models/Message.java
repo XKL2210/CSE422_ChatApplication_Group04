@@ -24,9 +24,9 @@ public class Message {
 		this.time = LocalDateTime.now();
 	}
 	//Functional Methods
-	public RelatedTarget getRelation(Object unidentifiedEntity) {
-        boolean isSender = unidentifiedEntity.equals(sender);
-        boolean isReceiver = unidentifiedEntity.equals(receiver);
+	public RelatedTarget getRelation(User user) {
+        boolean isSender = user.getUsername().equals(sender.getUsername());
+        boolean isReceiver = user.getUsername().equals(receiver.getUsername());
 
         if (!isSender && !isReceiver) {
             return RelatedTarget.Unrelated;
@@ -39,13 +39,6 @@ public class Message {
         return RelatedTarget.Receiver;
     }
     
-    public boolean isRelatedTo(Object unidentifiedEntity) {
-        if (this.getRelation(unidentifiedEntity) == RelatedTarget.Unrelated) {
-            return false;
-        }
-
-        return true;
-    }
     //Temporary adding method modify later
     public void addFile(File file) {
     	if(!files.contains(file)) {

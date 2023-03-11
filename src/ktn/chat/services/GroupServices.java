@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import ktn.chat.data.DataStorage;
 import ktn.chat.enums.GroupType;
+import ktn.chat.enums.RelatedTarget;
 import ktn.chat.enums.Role;
 import ktn.chat.models.File;
 import ktn.chat.models.Group;
@@ -80,6 +81,32 @@ public class GroupServices {
             }
         }
         return files;
+    }
+    
+    public List<Message> getMessagesUser(User user, RelatedTarget target) {
+    	List<Message> messages = new ArrayList<>();
+        List<Message> relatedMessages = new ArrayList<>();
+        messages = (List<Message>) dataStorage.getMessageRepository();
+        
+        for (Message message : messages) {
+            if (message.getRelation(user).equals(target)) {
+            	relatedMessages.add(message);
+            }
+        }
+        return relatedMessages;
+    }
+    
+    public List<Message> getMessagesGroup(Group group) {
+    	List<Message> messages = new ArrayList<>();
+        List<Message> relatedMessages = new ArrayList<>();
+        messages = (List<Message>) dataStorage.getMessageRepository();
+        
+        for (Message message : messages) {
+            if (message.getGroup().getId().equals(group.getId())) {
+            	relatedMessages.add(message);
+            }
+        }
+        return relatedMessages;
     }
     
     public List<Group> GetGroupsOfUser(User user, Role role) {
