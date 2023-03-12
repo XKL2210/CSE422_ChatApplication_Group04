@@ -12,10 +12,11 @@ import org.junit.jupiter.api.Test;
 
 import ktn.chat.enums.Gender;
 import ktn.chat.models.User;
+
 //Testing JUnit the purpose of this class is to practice on JUnit for all collaborators 
 class UserTest {
 	User user;
-	
+
 	@BeforeAll
 	static void testOnline() throws Exception {
 		System.out.println("UserServicesTest Online");
@@ -29,7 +30,7 @@ class UserTest {
 
 	@BeforeEach
 	void objectInitialization() throws Exception {
-		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.Male);
+		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.MALE);
 	}
 
 	@Test
@@ -38,12 +39,14 @@ class UserTest {
 		assertEquals(true, user.checkPassword("1234"));
 		System.out.println("Test 01: Executed");
 	}
+
 	@Test
 	@DisplayName("Test 02: FirstNameCheck")
 	void test02() {
 		assertEquals("Sahn", user.getFirstName());
 		System.out.println("Test 02: Executed");
 	}
+
 	@Test
 	@DisplayName("Test 03: GenderCheck")
 	void test03() {

@@ -26,7 +26,7 @@ class UserServicesTest {
 	static void testOffline() throws Exception {
 		System.out.println("...UserServicesTest Offline");
 	}
-	
+
 	@BeforeEach
 	void objectInitialization() throws Exception {
 		userServices = new UserServices();
@@ -35,32 +35,34 @@ class UserServicesTest {
 	@Test
 	@DisplayName("Test 01: User creation")
 	void test01() {
-		boolean successToken = userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
+		boolean successToken = userServices.signUp("SahnUzal2210", "ak071292", "Sahn", "Uzal",
+				LocalDate.of(2020, 10, 22), Gender.MALE);
 		assertEquals(successToken, true);
 	}
-	
+
 	@Test
 	@DisplayName("Test 02: User sign in")
 	void test02() {
-		userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
-		boolean successToken = userServices.SignIn("SahnUzal2210", "ak071292");
+		userServices.signUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.MALE);
+		boolean successToken = userServices.signIn("SahnUzal2210", "ak071292");
 		assertEquals(successToken, true);
 	}
-	
+
 	@Test
 	@DisplayName("Test 03: User remove")
 	void test03() {
-		userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
-		userServices.SignIn("SahnUzal2210", "ak071292");
+		userServices.signUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.MALE);
+		userServices.signIn("SahnUzal2210", "ak071292");
 		boolean successToken = userServices.removeUser("SahnUzal2210");
 		assertEquals(successToken, true);
 	}
-	
+
 	@Test
 	@DisplayName("Test 04: User exist")
 	void test04() {
-		userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
-		boolean successToken = userServices.SignUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.Male);
+		userServices.signUp("SahnUzal2210", "ak071292", "Sahn", "Uzal", LocalDate.of(2020, 10, 22), Gender.MALE);
+		boolean successToken = userServices.signUp("SahnUzal2210", "ak071292", "Sahn", "Uzal",
+				LocalDate.of(2020, 10, 22), Gender.MALE);
 		assertEquals(successToken, false);
 	}
 }

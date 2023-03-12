@@ -22,7 +22,7 @@ class FileServicesTest {
 	File file02;
 	File file03;
 	File file04;
-	
+
 	@BeforeAll
 	static void testOnline() throws Exception {
 		System.out.println("FileServicesTest Online");
@@ -36,10 +36,10 @@ class FileServicesTest {
 
 	@BeforeEach
 	void objectInitialization() throws Exception {
-		file01 = new File("001","Chippin In.mp3", FileType.Audio);
-        file02 = new File("002","Archangel.mp3", FileType.Audio);
-        file03 = new File("003","Never Fade Away.mp3", FileType.Audio);
-        file04 = new File("004","The Rebel Path.mp3", FileType.Audio);
+		file01 = new File("001", "Chippin In.mp3", FileType.AUDIO);
+		file02 = new File("002", "Archangel.mp3", FileType.AUDIO);
+		file03 = new File("003", "Never Fade Away.mp3", FileType.AUDIO);
+		file04 = new File("004", "The Rebel Path.mp3", FileType.AUDIO);
 		fileServices = new FileServices();
 	}
 
@@ -59,46 +59,46 @@ class FileServicesTest {
 	void test02() throws IOException {
 		assertEquals(file03, fileServices.getFileWithId("003"));
 	}
-	
+
 	@Test
 	@DisplayName("Test 03: Unidentified id")
 	void test03() throws IOException {
-		
+
 		assertNull(fileServices.getFileWithId("005"));
 	}
-	
+
 	@Test
 	@DisplayName("Test 04: Get file by type")
 	void test04() throws IOException {
-        List<File> myPlaylist = (List<File>) fileServices.getFilesWithType(FileType.Audio);
-        assertEquals(4, myPlaylist.size());
+		List<File> myPlaylist = (List<File>) fileServices.getFilesWithType(FileType.AUDIO);
+		assertEquals(4, myPlaylist.size());
 	}
-	
+
 	@Test
 	@DisplayName("Test 05: Get file by name")
 	void test05() throws IOException {
-        List<File> myPlaylist = (List<File>) fileServices.getFilesWithName("Archangel");
-        assertEquals(file02.getFilename(), myPlaylist.get(0).getFilename());
+		List<File> myPlaylist = (List<File>) fileServices.getFilesWithName("Archangel");
+		assertEquals(file02.getFilename(), myPlaylist.get(0).getFilename());
 	}
-	
+
 	@Test
 	@DisplayName("Test 06: Get file but empty list")
 	void test06() throws IOException {
-        List<File> myPlaylist = (List<File>) fileServices.getFilesWithType(FileType.Video);
-        assertEquals(0, myPlaylist.size());
+		List<File> myPlaylist = (List<File>) fileServices.getFilesWithType(FileType.VIDEO);
+		assertEquals(0, myPlaylist.size());
 	}
-	
+
 	@Test
 	@DisplayName("Test 07: Unindentified file name")
 	void test07() throws IOException {
-        List<File> myPlaylist = (List<File>) fileServices.getFilesWithName("Hello");
-        assertEquals(0, myPlaylist.size());
+		List<File> myPlaylist = (List<File>) fileServices.getFilesWithName("Hello");
+		assertEquals(0, myPlaylist.size());
 	}
-	
+
 	@Test
 	@DisplayName("Test 08: Get all")
 	void test08() throws IOException {
-        List<File> myPlaylist = (List<File>) fileServices.getFilesWithName(".");
-        assertEquals(4, myPlaylist.size());
+		List<File> myPlaylist = (List<File>) fileServices.getFilesWithName(".");
+		assertEquals(4, myPlaylist.size());
 	}
 }

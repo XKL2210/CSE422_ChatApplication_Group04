@@ -7,26 +7,26 @@ import ktn.chat.models.PublicGroup;
 import ktn.chat.models.User;
 
 public class PrivateGroupServices {
-DataStorage dataStorage;
-	
+	private DataStorage dataStorage;
+
 	public PrivateGroupServices() {
-        dataStorage = DataStorage.getDataStorage();
-    }
+		dataStorage = DataStorage.getDataStorage();
+	}
 
-    public boolean joinWithAccessCode(User user, String accessPasscode) {
-        Group toJoinGroup = dataStorage.getGroupRepository().find(group -> {
-            if (group instanceof PublicGroup) {
-                return ((PublicGroup) group).getPasscode().equals(accessPasscode);
-            }
+	public boolean joinWithAccessCode(User user, String accessPasscode) {
+		Group toJoinGroup = dataStorage.getGroupRepository().find(group -> {
+			if (group instanceof PublicGroup) {
+				return ((PublicGroup) group).getAccessPasscode().equals(accessPasscode);
+			}
 
-            return false;
-        });
+			return false;
+		});
 
-        if (toJoinGroup == null) {
-            return false;
-        }
+		if (toJoinGroup == null) {
+			return false;
+		}
 
-        toJoinGroup.addMember(user, Role.Member);
-        return true;
-    }
+		toJoinGroup.addMember(user, Role.MEMBER);
+		return true;
+	}
 }

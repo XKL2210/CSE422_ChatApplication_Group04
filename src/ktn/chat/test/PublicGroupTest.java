@@ -11,9 +11,10 @@ import ktn.chat.models.User;
 public class PublicGroupTest {
 	User user;
 	PublicGroup group;
+
 	@BeforeEach
 	void setUp() throws Exception {
-		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.Male);
-		group = new PublicGroup("Group01","Nhan",user,null, "nnn");
+		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.MALE);
+		group = new PublicGroup("Group01", "Nhan", user, null, "nnn");
 	}
 }

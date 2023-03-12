@@ -19,55 +19,55 @@ import ktn.chat.models.User;
 public class GroupServices {
 	private DataStorage dataStorage;
 
-    public GroupServices() {
-        dataStorage = DataStorage.getDataStorage();
-    }
+	public GroupServices() {
+		dataStorage = DataStorage.getDataStorage();
+	}
 
-    public Group createGroup(GroupType groupType, String groupName, User creator, List<User> members) {
-        if (members.size() < 2) {
-            return null;
-        }
+	public Group createGroup(GroupType groupType, String groupName, User creator, List<User> members) {
+		if (members.size() < 2) {
+			return null;
+		}
 
-        members.add(creator);
+		members.add(creator);
 
-        String groupID = UUID.randomUUID().toString();
-        String accessCode = UUID.randomUUID().toString();
-        
-        Group group;
-        
-        if(groupType == GroupType.PrivateGroup) {
-        	group = new PrivateGroup(groupID, groupName, creator, members);
-        } else {
-        	group = new PublicGroup(groupID, groupName, creator, members, accessCode);
-        }
+		String groupID = UUID.randomUUID().toString();
+		String accessCode = UUID.randomUUID().toString();
 
-        dataStorage.getGroupRepository().insert(group);
+		Group group;
 
-        return group;
-    }
+		if (groupType == GroupType.PRIVATEGROUP) {
+			group = new PrivateGroup(groupID, groupName, creator, members);
+		} else {
+			group = new PublicGroup(groupID, groupName, creator, members, accessCode);
+		}
 
-    public boolean addMember(User member, Group group) {
-        if (group.isMember(member)) {
-            return false;
-        }
+		dataStorage.getGroupRepository().insert(group);
 
-        group.addMember(member, Role.Member);
-        return true;
-    }
+		return group;
+	}
 
-    public boolean removeMember(User member, Group group) {
-        if (group.isMember(member)) {
-            if (group instanceof PrivateGroup) {
-                if (group.getRole(member) == Role.Admin && group.getAdminCount() == 1) {
-                    return false;
-                }
-            }
+	public boolean addMember(User member, Group group) {
+		if (group.isMember(member)) {
+			return false;
+		}
 
-            group.removeUser(member);
-            group.removeRole(member);
-            return true;
-        }
+		group.addMember(member, Role.MEMBER);
+		return true;
+	}
 
-        return false;
-    }
+	public boolean removeMember(User member, Group group) {
+		if (group.isMember(member)) {
+			if (group instanceof PrivateGroup) {
+				if (group.getRole(member) == Role.ADMIN && group.getAdminCount() == 1) {
+					return false;
+				}
+			}
+
+			group.removeUser(member);
+			group.removeRole(member);
+			return true;
+		}
+
+		return false;
+	}
 }

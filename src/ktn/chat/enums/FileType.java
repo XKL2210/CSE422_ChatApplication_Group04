@@ -1,5 +1,5 @@
 package ktn.chat.enums;
 
 public enum FileType {
-	Image, Video, Audio
+	IMAGE, VIDEO, AUDIO
 }

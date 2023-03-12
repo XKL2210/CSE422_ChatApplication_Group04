@@ -23,35 +23,35 @@ public class FileServices {
 
 	public boolean createFolder() {
 		File folder = new File(FileServices.path);
-		
+
 		if (!folder.exists()) {
 			return folder.mkdirs();
 		}
-		
+
 		return false;
 	}
-	
+
 	public ktn.chat.models.File createFile(String id, String fileName, FileType fileType) throws IOException {
 		ktn.chat.models.File file = new ktn.chat.models.File(id, fileName, fileType);
-		
-		dataStorage.getFileRepository().insert(file);		
+
+		dataStorage.getFileRepository().insert(file);
 		createSaveFile(file);
-		
+
 		return file;
 	}
-	
+
 	public ktn.chat.models.File createFile(ktn.chat.models.File file) throws IOException {
-		
-		dataStorage.getFileRepository().insert(file);		
+
+		dataStorage.getFileRepository().insert(file);
 		createSaveFile(file);
-		
+
 		return file;
 	}
-	
+
 	public void createSaveFile(ktn.chat.models.File file) throws IOException {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
-		
+
 		try {
 			fw = new FileWriter(path + "\\" + file.getFilename());
 			bw = new BufferedWriter(fw);
@@ -71,29 +71,31 @@ public class FileServices {
 			}
 		}
 	}
-	
+
 	public ktn.chat.models.File getFileWithId(String id) {
 		ktn.chat.models.File match = dataStorage.getFileRepository().find(file -> file.getId().equals(id));
 
-        return match;
-    }
-	
+		return match;
+	}
+
 	public Iterable<ktn.chat.models.File> getFilesWithType(FileType fileType) {
-        Iterable<ktn.chat.models.File> files = dataStorage.getFileRepository().get(file -> file.getFileType() == fileType, null);
-        
-        return files;
-    }
+		Iterable<ktn.chat.models.File> files = dataStorage.getFileRepository()
+				.get(file -> file.getFileType() == fileType, null);
 
-    public Iterable<ktn.chat.models.File> getFilesWithName(String fileName) {
-        String finalFileName = fileName.toLowerCase();
-        Iterable<ktn.chat.models.File> files = dataStorage.getFileRepository().get(file -> file.getFilename().toLowerCase().contains(finalFileName), null);
+		return files;
+	}
 
-        return files;
-    }
-	
+	public Iterable<ktn.chat.models.File> getFilesWithName(String fileName) {
+		String finalFileName = fileName.toLowerCase();
+		Iterable<ktn.chat.models.File> files = dataStorage.getFileRepository()
+				.get(file -> file.getFilename().toLowerCase().contains(finalFileName), null);
+
+		return files;
+	}
+
 	public boolean removeSavedFile(String fileName) {
 		File file = new File(path + "\\" + fileName);
-		
+
 		try {
 			return file.delete();
 		} catch (Exception e) {
@@ -109,7 +111,7 @@ public class FileServices {
 			dataStorage.getFileRepository().delete(file);
 			return true;
 		}
-		
+
 		return false;
 	}
 }

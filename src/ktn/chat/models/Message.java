@@ -14,8 +14,8 @@ public class Message {
 	private String messageContext;
 	private List<File> files;
 	private LocalDateTime time;
-	
-	public Message (User sender, User receiver, String messageContext, File file, Group receivedGroup) {
+
+	public Message(User sender, User receiver, String messageContext, File file, Group receivedGroup) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.relatedGroup = receivedGroup;
@@ -23,69 +23,71 @@ public class Message {
 		this.files = new ArrayList<>();
 		this.time = LocalDateTime.now();
 	}
-	//Functional Methods
+
+	// Functional Methods
 	public RelatedTarget getRelation(User user) {
-        boolean isSender = user.getUsername().equals(sender.getUsername());
-        boolean isReceiver = user.getUsername().equals(receiver.getUsername());
+		boolean isSender = user.getUserName().equals(sender.getUserName());
+		boolean isReceiver = user.getUserName().equals(receiver.getUserName());
 
-        if (!isSender && !isReceiver) {
-            return RelatedTarget.Unrelated;
-        }
+		if (!isSender && !isReceiver) {
+			return RelatedTarget.UNRELATED;
+		}
 
-        if (isSender) {
-            return RelatedTarget.Sender;
-        }
+		if (isSender) {
+			return RelatedTarget.SENDER;
+		}
 
-        return RelatedTarget.Receiver;
-    }
-    
-    //Temporary adding method modify later
-    public void addFile(File file) {
-    	if(!files.contains(file)) {
-    		files.add(file);
-    	}
-    	
-    }
-    //Getter
+		return RelatedTarget.RECEIVER;
+	}
+
+	// Temporary adding method modify later
+	public void addFile(File file) {
+		if (!files.contains(file)) {
+			files.add(file);
+		}
+
+	}
+
+	// Getter
 	public User getSender() {
-        return sender;
-    }
-	
+		return sender;
+	}
+
 	public User getReceiver() {
 		return receiver;
 	}
-	
-	public Group getGroup() {
+
+	public Group getRelatedGroup() {
 		return relatedGroup;
 	}
-	
-	public List getFiles() {
+
+	public List<File> getFiles() {
 		return files;
 	}
-	
-	public String getMessage() {
+
+	public String getMessageContext() {
 		return messageContext;
 	}
-	
+
 	public LocalDateTime getTime() {
 		return time;
 	}
-	
-	public int getMessageContextCount() {
+
+	public int getMessageContextLength() {
 		return messageContext.split(" ").length;
 	}
-	
-	//Setter
+
+	// Setter
 	public void setSender(User sender) {
-        this.sender = sender;
-    }
-	
+		this.sender = sender;
+	}
+
 	public void setReceiver(User receiver) {
 		this.receiver = receiver;
 	}
-	
-	public void setMessage(String message) {
-		this.messageContext = message;
+
+	public void setMessageContext(String messageContext) {
+		this.messageContext = messageContext;
 	}
-	
+
 }

@@ -8,22 +8,22 @@ import ktn.chat.models.Alias;
 import ktn.chat.models.User;
 
 public class UserServices {
-	DataStorage dataStorage;
-	User currentUser;
+	private DataStorage dataStorage;
+	private User currentUser;
 
 	public UserServices() {
 		dataStorage = new DataStorage();
 	}
 
 	public User getUser(String username) {
-		return dataStorage.getUserRepository().find(u -> u.getUsername().equals(username));
+		return dataStorage.getUserRepository().find(u -> u.getUserName().equals(username));
 	}
 
-	public boolean SignUp(String userName, String password, String firstName, String lastName, LocalDate dateOfBirth,
+	public boolean signUp(String username, String password, String firstName, String lastName, LocalDate dateOfBirth,
 			Gender gender) {
-		User registerUser = getUser(userName);
+		User registerUser = getUser(username);
 		if (registerUser == null) {
-			User newUser = new User(userName, password, firstName, lastName, dateOfBirth, gender);
+			User newUser = new User(username, password, firstName, lastName, dateOfBirth, gender);
 			dataStorage.getUserRepository().insert(newUser);
 			return true;
 		} else {
@@ -32,48 +32,48 @@ public class UserServices {
 		}
 	}
 
-	public boolean SignIn(String username, String pwd) {
+	public boolean signIn(String username, String password) {
 		currentUser = getUser(username);
 
-		if (currentUser != null && currentUser.checkPassword(pwd)) {
+		if (currentUser != null && currentUser.checkPassword(password)) {
 			System.out.println("Signed in successfully");
 			return true;
 		} else {
-			System.out.println("The Username or Password is incorrect");
+			System.out.println("The username or password is incorrect");
 			return false;
 		}
 	}
-	
+
 	public boolean setAlias(String currentUsername, String targetUsername, String aliasName) {
 		currentUser = getUser(currentUsername);
 		User targetUser = getUser(targetUsername);
-		
-		if(currentUsername != null && targetUser != null) {
+
+		if (currentUsername != null && targetUser != null) {
 			Alias alias = new Alias(currentUser, targetUser, aliasName);
-			currentUser.getAliasList().put(targetUser, alias);
+			currentUser.getAliases().put(targetUser, alias);
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public Alias getAlias(String currentUsername, String targetUsername) {
 		currentUser = getUser(currentUsername);
 		User targetUser = getUser(targetUsername);
-		
-		if(currentUsername != null && targetUser != null) {
-			currentUser.getAliasList().get(targetUser);
-			return currentUser.getAliasList().get(targetUser);
+
+		if (currentUsername != null && targetUser != null) {
+			return currentUser.getAliases().get(targetUser);
+		} else {
+			return null;
 		}
-		
-		return null;
 	}
 
 	public boolean removeUser(String username) {
 		if (currentUser != null) {
 			dataStorage.getUserRepository().delete(currentUser);
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 }

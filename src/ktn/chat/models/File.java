@@ -1,7 +1,6 @@
 package ktn.chat.models;
 
 import java.util.UUID;
-
 import ktn.chat.enums.FileType;
 
 public class File {
@@ -16,33 +15,35 @@ public class File {
 		this.fileType = fileType;
 		extension = filename.substring(filename.lastIndexOf(".") + 1);
 	}
-	//Getter
+
+	// Getter
 	public String getId() {
 		return id;
 	}
 
-	private void setId() {
-		this.id = UUID.randomUUID().toString();
-	}
-
 	public String getFilename() {
 		return fileName;
-	}
-	//Setter
-	public void setFilename(String filename) {
-		this.fileName = filename;
 	}
 
 	public FileType getFileType() {
 		return fileType;
 	}
 
-	public void setFileType(FileType fileType) {
-		this.fileType = fileType;
-	}
-
 	public String getExtension() {
 		return extension;
+	}
+
+	// Setter
+	private void setId() {
+		this.id = UUID.randomUUID().toString();
+	}
+
+	public void setFilename(String filename) {
+		this.fileName = filename;
+	}
+
+	public void setFileType(FileType fileType) {
+		this.fileType = fileType;
 	}
 
 	public void setExtension(String extension) {
