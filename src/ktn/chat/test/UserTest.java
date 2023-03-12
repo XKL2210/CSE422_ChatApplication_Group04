@@ -50,7 +50,7 @@ class UserTest {
 	@Test
 	@DisplayName("Test 03: GenderCheck")
 	void test03() {
-		assertEquals(Gender.valueOf("Male"), user.getGender());
-		System.out.println("Test 02: Executed");
+		assertEquals(Gender.MALE, user.getGender());
+		System.out.println("Test 03: Executed");
 	}
 }
