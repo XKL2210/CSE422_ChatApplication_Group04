@@ -15,27 +15,27 @@ import ktn.chat.models.User;
 public class PublicGroupTest {
 	User user;
 	PublicGroup group;
-	//String accessPasscode;
+
+	// String accessPasscode;
 	@BeforeEach
 	void setUp() throws Exception {
 		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.MALE);
 		group = new PublicGroup("Group01", "Nhan", user, null, "nnn");
 
 	}
-	
+
 	@Test
 	@DisplayName("Test 01: getAccessPass")
 	void test01() {
-		assertEquals("nnn",group.getAccessPasscode());
+		assertEquals("nnn", group.getAccessPasscode());
 		System.out.println("Test 01: Executed");
 	}
-	
+
 	@Test
 	@DisplayName("Test 02: setAccessPass")
 	void test02() {
-	group.setAccessPasscode("abc");
+		group.setAccessPasscode("abc");
 		System.out.println("Test 02: Executed");
 	}
-	
-	
+
 }
