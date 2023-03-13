@@ -8,10 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import ktn.chat.enums.Gender;
 import ktn.chat.models.PrivateGroup;
-import ktn.chat.models.PublicGroup;
 import ktn.chat.models.User;
 
 public class PrivateGroupTest {
