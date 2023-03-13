@@ -17,6 +17,7 @@ public class PrivateGroupTest {
 	User admin;
 	PrivateGroup group;
 	List<User> members;
+
 	@BeforeEach
 	void setUp() throws Exception {
 		user = new User("User01", "1234", "Sahn", "Uzal", LocalDate.of(2000, 10, 22), Gender.MALE);
@@ -24,33 +25,33 @@ public class PrivateGroupTest {
 		group = new PrivateGroup("Group01", "Nhan", admin, members);
 
 	}
-	
+
 	@Test
 	@DisplayName("Test 01: getAdmin")
 	void test01() {
-		assertEquals(admin,group.getAdmin());
+		assertEquals(admin, group.getAdmin());
 		System.out.println("Test 01: Executed");
 	}
-	
+
 	@Test
 	@DisplayName("Test 02: setAdmin")
 	void test02() {
 		group.setAdmin(user);
 		System.out.println("Test 02: Executed");
 	}
-	
+
 	@Test
 	@DisplayName("Test 03: isAdmin")
 	void test03() {
-		assertEquals(true,group.isAdmin(admin));
+		assertEquals(true, group.isAdmin(admin));
 		System.out.println("Test 03: Executed");
 	}
-	
+
 	@Test
 	@DisplayName("Test 04: removeAdmin")
 	void test04() {
 		group.removeMember(admin, user);
 		System.out.println("Test 04: Executed");
 	}
-	
+
 }
